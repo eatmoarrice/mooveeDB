@@ -12,7 +12,11 @@ export default function MovieCard(props) {
 						<div className="shine">
 							<span className="badge badge-danger top-right-badge"> {movie.vote_average}</span>
 							<div className="cards-img-div">
-								<img class="cards-img" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
+								{movie.poster_path == null ? (
+									<img className="cards-img" width="300px" src={'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png'} />
+								) : (
+									<img className="cards-img" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
+								)}
 							</div>
 
 							<div className="cards-body">

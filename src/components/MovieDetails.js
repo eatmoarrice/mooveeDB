@@ -71,7 +71,11 @@ export default function MovieDetails({ match }) {
 							<div className="left-side col-lg-5 col-12">
 								<div>
 									<div className="shine shine-single d-inline-block">
-										<img className="movie-pic d-block" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt={movie.title} />
+										{movie.poster_path == null ? (
+											<img className="movie-pic d-block" width="342px" src={`https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png`} alt={movie.title} />
+										) : (
+											<img className="movie-pic d-block" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt={movie.title} />
+										)}
 									</div>
 								</div>
 							</div>

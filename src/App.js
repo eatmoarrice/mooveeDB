@@ -20,6 +20,7 @@ function App() {
 	const [movieList, setMovieList] = useState(null);
 	const [genreList, setGenreList] = useState({});
 	const [page, setPage] = useState(1);
+	let sort = '';
 	// let page = 1;
 
 	const [searchText, setSearchText] = useState('');
@@ -71,6 +72,7 @@ function App() {
 	};
 
 	const searchFilm = async (page) => {
+		page.preventDefault();
 		try {
 			let url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchText}&page=${page}`;
 			let data = await fetch(url);
@@ -111,7 +113,7 @@ function App() {
 		<Router>
 			<div className="App">
 				<Navbar style={{ backgroundColor: 'brown' }} variant="dark">
-					<Navbar.Brand href="#home">MooVeeDB</Navbar.Brand>
+					<Navbar.Brand href="/">MooVeeDB</Navbar.Brand>
 					<Nav className="mr-auto">
 						<Nav.Link href="/">Now Playing</Nav.Link>
 						<Nav.Link onClick={() => refreshList('top_rated')}>Top Rated</Nav.Link>
@@ -138,7 +140,7 @@ function App() {
 							/>
 							{/* <Button variant="outline-success">Search</Button> */}
 						</Form>
-						<MovieList movieList={movieList} genreList={genreList} filter={keyword} />
+						<MovieList movieList={movieList} genreList={genreList} filter={keyword} sort={sort} />
 						<Pagination pages={numberOfPages} nextPage={nextPage} currentPage={page} />
 					</Route>
 					<Route path="/movie/:id" component={MovieDetails}></Route>

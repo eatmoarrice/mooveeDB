@@ -181,7 +181,8 @@ hr.style-four {
 }
 
 .movie-card {
-	/* filter: drop-shadow(0 0 10px rgb(0, 0, 0)); */
+	/* filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.534)); */
+	box-shadow: 10px 10px 5px #00000062;
 	position: relative;
 	transition-duration: 0.5s;
 	border-bottom-left-radius: 20px;
@@ -206,6 +207,7 @@ hr.style-four {
 @media only screen and (min-width: 1200px) {
 	.movie-card:hover {
 		transform: scale(1.2, 1.2);
+		/* filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.534)); */
 		transition-duration: 0.5s;
 	}
 

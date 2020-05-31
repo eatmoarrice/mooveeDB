@@ -72,7 +72,6 @@ function App() {
 	};
 
 	const searchFilm = async (page) => {
-		page.preventDefault();
 		try {
 			let url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchText}&page=${page}`;
 			let data = await fetch(url);

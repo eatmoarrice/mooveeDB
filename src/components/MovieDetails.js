@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../App.css';
+// import '../MovieDetails.css';
 let apiKey = process.env.REACT_APP_APIKEY;
 
 export default function MovieDetails({ match }) {
@@ -8,6 +8,7 @@ export default function MovieDetails({ match }) {
 	}, []);
 
 	const [movie, setMovie] = useState({});
+	const [video, setVideo] = useState({});
 
 	const getJustOneMovie = async () => {
 		try {
@@ -22,8 +23,25 @@ export default function MovieDetails({ match }) {
 		} catch (err) {
 			alert(err.message);
 		}
+		getVideo();
 	};
-	if (movie.genres === undefined) {
+
+	const getVideo = async () => {
+		try {
+			let url = `https://api.themoviedb.org/3/movie/${match.params.id}/videos?api_key=${apiKey}&language=en-US`;
+			let data = await fetch(url);
+			if (data.status !== 200) {
+				throw new Error('data is wrong');
+			}
+			let result = await data.json();
+			setVideo(result);
+			console.log(result.results);
+		} catch (err) {
+			alert(err.message);
+		}
+	};
+
+	if (video.results === undefined) {
 		return <div>loading</div>;
 	}
 	return (
@@ -50,15 +68,18 @@ export default function MovieDetails({ match }) {
 						</div>
 						<hr className="style-four"></hr>
 						<div className="row">
-							<div className="left-side col-md-4 col-12">
+							<div className="left-side col-lg-5 col-12">
 								<div>
-									<img className="movie-pic" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt={movie.title} />
+									<div className="shine shine-single d-inline-block">
+										<img className="movie-pic d-block" src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt={movie.title} />
+									</div>
 								</div>
 							</div>
-							<div className="right-side col-md-8">
+							<div className="right-side col-lg-7">
 								<div className="tagline">{movie.tagline}</div>
 
 								<div className="movie-description">{movie.overview}</div>
+								{video.results.length < 1 ? '' : <iframe width="420" height="315" src={`https://www.youtube.com/embed/${video.results[0].key}`}></iframe>}
 							</div>
 						</div>
 					</div>

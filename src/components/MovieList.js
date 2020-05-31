@@ -1,5 +1,5 @@
-import React from "react";
-import MovieCard from "./MovieCard";
+import React from 'react';
+import MovieCard from './MovieCard';
 
 export default function MovieList(props) {
 	const getIndividualGenres = (item) => {
@@ -18,11 +18,16 @@ export default function MovieList(props) {
 	};
 	return (
 		<div>
-			<div className="d-flex flex-wrap justify-content-around">
+			<div className="d-flex flex-wrap justify-content-around flex-list">
 				{filterListByKeyword().map((item) => {
 					let genres = getIndividualGenres(item);
 					return <MovieCard movie={item} genres={genres} />;
 				})}
+				<div className="flexfix"></div>
+				<div className="flexfix"></div>
+				<div className="flexfix"></div>
+				<div className="flexfix"></div>
+				<div className="flexfix"></div>
 			</div>
 		</div>
 	);

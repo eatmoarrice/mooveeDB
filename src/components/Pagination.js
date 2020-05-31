@@ -33,7 +33,7 @@ export default function Pagination(props) {
 	}
 	return (
 		<div class="container">
-			<div className="row">
+			<div className="d-flex justify-content-center">
 				<ul className="pagination">
 					{props.currentPage > 1 ? (
 						<li onClick={() => props.nextPage(props.currentPage - 1)}>

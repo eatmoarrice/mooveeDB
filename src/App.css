@@ -191,7 +191,10 @@ hr.style-four {
 	/* width: 80%;
 	height: 90%; */
 }
-
+.preload {
+	height: 100vh;
+	width: 100vw;
+}
 .cards-body {
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
@@ -318,4 +321,11 @@ hr.style-four {
 		margin-bottom: 10px;
 		display: inline-block;
 	}
+}
+
+body {
+	color: white;
+	height: 100%;
+	background-color: black;
+	text-align: center;
 }

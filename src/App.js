@@ -7,9 +7,16 @@ import { Form, FormControl, Navbar, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
 import SearchBar from './components/SearchBar';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from '@emotion/core';
 import Pagination from './components/Pagination';
 // import NavBar from './components/NavBar';
 const apiKey = process.env.REACT_APP_APIKEY;
+const override = css`
+	display: block;
+	margin: 0 auto;
+	border-color: red;
+`;
 
 function App() {
 	let tempObj = {};
@@ -106,7 +113,13 @@ function App() {
 	}, []);
 
 	if (movieList === null) {
-		return <div>loading</div>;
+		return (
+			<div class="preload d-flex justify-content-center align-items-center">
+				<div className="sweet-loading">
+					<ClipLoader css={override} size={150} color={'#123abc'} loading="true" />
+				</div>
+			</div>
+		);
 	}
 	return (
 		<Router>
@@ -125,6 +138,16 @@ function App() {
 				<h1 className="site-title">MooVeeDB</h1>
 				{/* <div className="d-flex flex-wrap"> */}
 				<Switch>
+					{/* <Route path="/top_rated">
+					<ContentWithQuery query="top_rated"/>
+				</Route>
+				<Route path="/popular">
+				<ContentWithQuery query="popular"/>
+				</Route>
+				
+				<Route path="/" exact>
+				<ContentWithQuery query="now_playing"/>
+				</Route> */}
 					<Route path="/" exact>
 						<Form inline className="justify-content-center">
 							<FormControl

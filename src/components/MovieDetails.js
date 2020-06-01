@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from '@emotion/core';
 // import '../MovieDetails.css';
 let apiKey = process.env.REACT_APP_APIKEY;
+const override = css`
+	display: block;
+	margin: 0 auto;
+	border-color: red;
+`;
 
 export default function MovieDetails({ match }) {
 	useEffect(() => {
@@ -42,7 +49,13 @@ export default function MovieDetails({ match }) {
 	};
 
 	if (video.results === undefined) {
-		return <div>loading</div>;
+		return (
+			<div class="preload d-flex justify-content-center align-items-center">
+				<div className="sweet-loading">
+					<ClipLoader css={override} size={150} color={'#123abc'} loading="true" />
+				</div>
+			</div>
+		);
 	}
 	return (
 		// <React.Fragment>

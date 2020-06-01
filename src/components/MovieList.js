@@ -1,13 +1,13 @@
 import React from 'react';
 import MovieCard from './MovieCard';
-
+const apiKey = process.env.REACT_APP_APIKEY;
 export default function MovieList(props) {
 	const getIndividualGenres = (item) => {
 		let tempIDs = [];
 		item.genre_ids.forEach((element) => {
 			tempIDs.push(props.genreList[element]);
 		});
-		// console.log(tempIDs);
+
 		return tempIDs;
 	};
 

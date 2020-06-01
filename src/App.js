@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import MovieList from './components/MovieList';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import MovieList from "./components/MovieList";
 // import MovieCard from "./components/MovieCard";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, FormControl, Navbar, Nav, Button } from 'react-bootstrap';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MovieDetails from './components/MovieDetails';
-import SearchBar from './components/SearchBar';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { css } from '@emotion/core';
-import Pagination from './components/Pagination';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, FormControl, Navbar, Nav, Button } from "react-bootstrap";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import MovieDetails from "./components/MovieDetails";
+import SearchBar from "./components/SearchBar";
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/core";
+import Pagination from "./components/Pagination";
+
 // import NavBar from './components/NavBar';
 const apiKey = process.env.REACT_APP_APIKEY;
 const override = css`
@@ -20,33 +21,34 @@ const override = css`
 
 function App() {
 	let tempObj = {};
-	let searchContents = '';
+	let searchContents = "";
 	const [totalResults, setTotalResults] = useState(null);
 	const [numberOfPages, setNumberOfPages] = useState(null);
-	const [keyword, setKeyword] = useState('');
+	const [keyword, setKeyword] = useState("");
 	const [movieList, setMovieList] = useState(null);
 	const [genreList, setGenreList] = useState({});
 	const [page, setPage] = useState(1);
-	let sort = '';
+	let sort = "";
+
 	// let page = 1;
 
-	const [searchText, setSearchText] = useState('');
+	const [searchText, setSearchText] = useState("");
 	// const [category, setCategory] = useState('now_playing');
-	let category = 'now_playing';
-	const [currentList, setCurrentList] = useState('');
+	let category = "now_playing";
+	const [currentList, setCurrentList] = useState("");
 	const getMovies = async (page) => {
 		try {
 			let url = `https://api.themoviedb.org/3/movie/${category}?api_key=${apiKey}&language=en-US&page=${page}`;
 			let data = await fetch(url);
 			console.log(url);
 			if (data.status !== 200) {
-				throw new Error('data is wrong');
+				throw new Error("data is wrong");
 			}
 			let result = await data.json();
 			setMovieList(result.results);
 			// setTotalResults(result.total_results);
 			setNumberOfPages(result.total_pages);
-			setCurrentList('now_playing');
+			setCurrentList("now_playing");
 			// console.log(result);
 		} catch (err) {
 			alert(err.message);
@@ -63,7 +65,7 @@ function App() {
 			let data = await fetch(url);
 
 			if (data.status !== 200) {
-				throw new Error('data is wrong');
+				throw new Error("data is wrong");
 			}
 			let result = await data.json();
 			result.genres.forEach((element) => {
@@ -83,12 +85,12 @@ function App() {
 			let url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchText}&page=${page}`;
 			let data = await fetch(url);
 			if (data.status !== 200) {
-				throw new Error('data is wrong');
+				throw new Error("data is wrong");
 			}
 			let result = await data.json();
 			setMovieList(result.results);
 			setNumberOfPages(result.total_pages);
-			setCurrentList('movie');
+			setCurrentList("movie");
 			// setTotalFilms(result.total_results);
 			console.log(result);
 		} catch (err) {
@@ -98,9 +100,9 @@ function App() {
 
 	const nextPage = (num) => {
 		setPage(num);
-		if (currentList == 'now_playing') {
+		if (currentList == "now_playing") {
 			getMovies(num);
-		} else if (currentList == 'movie') {
+		} else if (currentList == "movie") {
 			searchFilm(num);
 		}
 	};
@@ -114,9 +116,9 @@ function App() {
 
 	if (movieList === null) {
 		return (
-			<div class="preload d-flex justify-content-center align-items-center">
+			<div className="preload d-flex justify-content-center align-items-center">
 				<div className="sweet-loading">
-					<ClipLoader css={override} size={150} color={'#123abc'} loading="true" />
+					<ClipLoader css={override} size={150} color={"#123abc"} loading="true" />
 				</div>
 			</div>
 		);
@@ -135,14 +137,14 @@ function App() {
 					<SearchBar searchFilm={searchFilm} changeSearch={changeSearch} />
 				</Navbar> */}
 
-				<Navbar variant="dark" style={{ backgroundColor: 'brown' }} expand="lg">
+				<Navbar variant="dark" style={{ backgroundColor: "brown" }} expand="lg">
 					<Navbar.Brand href="/">MooVeeDB</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-auto">
 							<Nav.Link href="/">Now Playing</Nav.Link>
-							<Nav.Link onClick={() => refreshList('top_rated')}>Top Rated</Nav.Link>
-							<Nav.Link onClick={() => refreshList('popular')}>Popular</Nav.Link>
+							<Nav.Link onClick={() => refreshList("top_rated")}>Top Rated</Nav.Link>
+							<Nav.Link onClick={() => refreshList("popular")}>Popular</Nav.Link>
 						</Nav>
 						<SearchBar searchFilm={searchFilm} changeSearch={changeSearch} />
 					</Navbar.Collapse>

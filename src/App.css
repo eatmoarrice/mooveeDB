@@ -14,7 +14,7 @@
 }
 
 .App {
-	background-image: url('./img/dark-wood.jpg');
+	background-image: url("./img/dark-wood.jpg");
 	background-repeat: repeat;
 	min-height: 100vh;
 	text-align: center;
@@ -35,7 +35,7 @@
 	padding: 20px;
 	letter-spacing: 0.3px;
 	font-size: 18px;
-	font-family: 'Courier New', Courier, monospace;
+	font-family: "Courier New", Courier, monospace;
 	color: white;
 }
 
@@ -145,7 +145,7 @@ hr.style-four {
 
 .shine:after {
 	transition-duration: 0.5s;
-	content: '';
+	content: "";
 	position: absolute;
 	top: -110%;
 	left: -210%;
@@ -278,7 +278,7 @@ hr.style-four {
 }
 .pagination li a.page-link:before,
 .pagination li a.page-link:after {
-	content: '';
+	content: "";
 	height: 100%;
 	width: 100%;
 	background-color: #992a1b;
@@ -328,4 +328,36 @@ body {
 	height: 100%;
 	background-color: black;
 	text-align: center;
+}
+.imdb-link,
+.imdb-link:link {
+	text-decoration: none;
+	color: white;
+}
+
+.ReactModal__Content,
+.ReactModal__Content--after-open {
+	width: 50% !important;
+	margin: auto auto;
+	height: 50% !important;
+	overflow: hidden !important;
+}
+
+.closeB {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.ReactModal__Overlay {
+	opacity: 0;
+	transition: opacity 1000ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+	opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+	opacity: 0;
 }

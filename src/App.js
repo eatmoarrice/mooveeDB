@@ -3,7 +3,7 @@ import './App.css';
 import MovieList from './components/MovieList';
 // import MovieCard from "./components/MovieCard";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, FormControl, Navbar, Nav } from 'react-bootstrap';
+import { Form, FormControl, Navbar, Nav, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
 import SearchBar from './components/SearchBar';
@@ -124,7 +124,7 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
-				<Navbar style={{ backgroundColor: 'brown' }} variant="dark">
+				{/* <Navbar style={{ backgroundColor: 'brown' }} variant="dark">
 					<Navbar.Brand href="/">MooVeeDB</Navbar.Brand>
 					<Nav className="mr-auto">
 						<Nav.Link href="/">Now Playing</Nav.Link>
@@ -133,6 +133,19 @@ function App() {
 					</Nav>
 
 					<SearchBar searchFilm={searchFilm} changeSearch={changeSearch} />
+				</Navbar> */}
+
+				<Navbar variant="dark" style={{ backgroundColor: 'brown' }} expand="lg">
+					<Navbar.Brand href="/">MooVeeDB</Navbar.Brand>
+					<Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="mr-auto">
+							<Nav.Link href="/">Now Playing</Nav.Link>
+							<Nav.Link onClick={() => refreshList('top_rated')}>Top Rated</Nav.Link>
+							<Nav.Link onClick={() => refreshList('popular')}>Popular</Nav.Link>
+						</Nav>
+						<SearchBar searchFilm={searchFilm} changeSearch={changeSearch} />
+					</Navbar.Collapse>
 				</Navbar>
 
 				<h1 className="site-title">MooVeeDB</h1>
